@@ -31,3 +31,6 @@
 <img src="https://github.com/husamettinarabaci/husamettinarabaci/blob/main/hsmtek-logo.png?raw=true" width="200"/>
 
 [@husamettinarabaci](https://www.github.com/husamettinarabaci)
+
+## Notes
+DDD, Hex-Arc, Unit Test,Google Wire,
