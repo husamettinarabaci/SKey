@@ -2,6 +2,16 @@
 
 # SKey
 
+## Dependencies
+
+"github.com/stretchr/testify/assert"
+"github.com/google/uuid"
+## Test
+
+go test -cover ./...
+go test ./... -coverprofile docs/testcover.out
+go tool cover -html=docs/testcover.out
+
 ## Tech Stack
 
 ![Go](https://img.shields.io/badge/Go-v1.19-blue)
@@ -33,4 +43,28 @@
 [@husamettinarabaci](https://www.github.com/husamettinarabaci)
 
 ## Notes
-DDD, Hex-Arc, Unit Test,Google Wire,
+DDD, Hex-Arc, Unit Test,Google Wire, testify
+
+## Project Structure
+Domain 
+    Module Based
+        Model 
+            Value Object
+            Entity
+            Aggregate
+        Service
+
+Application
+    Service
+        Module Based
+            C/Q Handlers
+            Event Listeners
+    Port - (Driver(Primary),Driven(Secondary))
+    Adapter - (Driver(Primary))
+
+Infrastructure
+    Adapter - (Driven(Secondary))
+
+Presentation
+
+## Directory Structure

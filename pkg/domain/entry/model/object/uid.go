@@ -1,9 +1,15 @@
-package domain_model_object
+package domain_entry_model_object
+
+import "github.com/google/uuid"
 
 type UId string
 
 func (u UId) String() string {
 	return string(u)
+}
+
+func GenerateUId() UId {
+	return UId(uuid.NewString())
 }
 
 func NewUId(uid string) UId {
@@ -18,4 +24,7 @@ func (u UId) Equals(uid UId) bool {
 	return u.String() == uid.String()
 }
 
-//TODO: Is Valid UUID
+func (u UId) IsValidUUID() bool {
+	_, err := uuid.Parse(u.String())
+	return err == nil
+}

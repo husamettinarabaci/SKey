@@ -1,4 +1,4 @@
-package domain_model_object
+package domain_entry_model_object
 
 type Title string
 

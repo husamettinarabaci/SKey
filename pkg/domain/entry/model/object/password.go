@@ -1,4 +1,4 @@
-package domain_model_object
+package domain_entry_model_object
 
 type Password string
 
@@ -17,3 +17,5 @@ func (p Password) IsEmpty() bool {
 func (p Password) Equals(password Password) bool {
 	return p.String() == password.String()
 }
+
+//TODO: Crypto
