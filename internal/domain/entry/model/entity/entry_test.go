@@ -1,10 +1,10 @@
-package app_shared_dto_entry
+package domain_entry_model_object
 
 import (
 	"testing"
 
 	"github.com/google/uuid"
-	demo "github.com/husamettinarabaci/SKey/pkg/domain/entry/model/object"
+	demo "github.com/husamettinarabaci/SKey/internal/domain/entry/model/object"
 	"github.com/stretchr/testify/assert"
 )
 

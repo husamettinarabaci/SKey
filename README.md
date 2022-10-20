@@ -8,9 +8,12 @@
 "github.com/google/uuid"
 ## Test
 
-go test -cover ./...
+//TODO: Integration Test - Fiber
+go clean -testcache
+go test -v -cover ./...
 go test ./... -coverprofile docs/testcover.out
 go tool cover -html=docs/testcover.out
+go tool cover -func docs/testcover.out
 
 ## Tech Stack
 
@@ -43,9 +46,10 @@ go tool cover -html=docs/testcover.out
 [@husamettinarabaci](https://www.github.com/husamettinarabaci)
 
 ## Notes
-DDD, Hex-Arc, Unit Test,Google Wire, testify
+DDD, Hex-Arc, Unit Test,Google Wire, testify, Go-Gin, Mockgen
 
 ## Project Structure
+
 Domain 
     Module Based
         Model 
@@ -56,11 +60,13 @@ Domain
 
 Application
     Service
-        Module Based
-            C/Q Handlers
-            Event Listeners
+        C/Q Handlers
+        Event Listeners
     Port - (Driver(Primary),Driven(Secondary))
     Adapter - (Driver(Primary))
+    Shared
+        Data Transfer Object
+            Module Based
 
 Infrastructure
     Adapter - (Driven(Secondary))

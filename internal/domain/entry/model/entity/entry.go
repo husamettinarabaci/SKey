@@ -1,7 +1,7 @@
-package domain_entry_model_entity
+package domain_entry_model_object
 
 import (
-	demo "github.com/husamettinarabaci/SKey/pkg/domain/entry/model/object"
+	demo "github.com/husamettinarabaci/SKey/internal/domain/entry/model/object"
 )
 
 type Entry struct {
