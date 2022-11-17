@@ -2,6 +2,9 @@ package infrastructure_entry_adapter_repository
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
 
 	deme "github.com/husamettinarabaci/SKey/internal/domain/entry/model/entity"
 	iem "github.com/husamettinarabaci/SKey/pkg/infrastructure/entry/model"
@@ -18,7 +21,7 @@ func NewRepository(filePath string) Repository {
 }
 
 func (h Repository) GetAllEntry(ctx context.Context) ([]deme.Entry, error) {
-
+	fmt.Println(h.filePath)
 	return nil, nil
 }
 func (h Repository) GetEntryById(ctx context.Context, uid string) (deme.Entry, error) {
@@ -27,6 +30,13 @@ func (h Repository) GetEntryById(ctx context.Context, uid string) (deme.Entry, e
 }
 func (h Repository) CreateEntry(ctx context.Context, entry deme.Entry) (deme.Entry, error) {
 
+	fmt.Println(h.filePath)
+	var iEntry iem.Entry = iem.FromEntity(entry)
+	file, _ := json.MarshalIndent(iEntry, "", " ")
+	err := ioutil.WriteFile(h.filePath, file, 0644)
+	if err != nil {
+		fmt.Println(err)
+	}
 	return deme.Entry{}, nil
 }
 func (h Repository) UpdateEntry(ctx context.Context, entry deme.Entry) (deme.Entry, error) {
