@@ -1,4 +1,4 @@
-package presentation_entry_service_restapi
+package presentation_entry_service_cli
 
 import (
 	"github.com/gin-gonic/gin"
@@ -6,31 +6,24 @@ import (
 	pem "github.com/husamettinarabaci/SKey/pkg/presentation/entry/model"
 )
 
-type RestAPI struct {
-	ginEngine      *gin.Engine
+type Cli struct {
 	commandHandler aepc.CommandHandler
 	queryHandler   aepc.QueryHandler
 }
 
-func NewRestAPI(c *gin.Engine, ch aepc.CommandHandler, qh aepc.QueryHandler) *RestAPI {
-	api := &RestAPI{
-		ginEngine:      c,
+func NewRestAPI(ch aepc.CommandHandler, qh aepc.QueryHandler) *Cli {
+	api := &Cli{
 		commandHandler: ch,
 		queryHandler:   qh,
 	}
 	if qh != nil {
-		api.ginEngine.GET("/api/v1/entries", api.GetAllEntry)
-		api.ginEngine.GET("/api/v1/entry/:id", api.GetEntryById)
 	}
 	if ch != nil {
-		api.ginEngine.POST("/api/v1/entry", api.CreateEntry)
-		api.ginEngine.PATCH("/api/v1/entry", api.UpdateEntry)
-		api.ginEngine.DELETE("/api/v1/entry/:id", api.DeleteEntry)
 	}
 	return api
 }
 
-func (api *RestAPI) GetAllEntry(c *gin.Context) {
+func (api *Cli) GetAllEntry(c *gin.Context) {
 	entries, err := api.queryHandler.GetAllEntry(c)
 	if err != nil {
 		c.JSON(500, gin.H{
@@ -50,7 +43,7 @@ func (api *RestAPI) GetAllEntry(c *gin.Context) {
 	}
 }
 
-func (api *RestAPI) GetEntryById(c *gin.Context) {
+func (api *Cli) GetEntryById(c *gin.Context) {
 	id := c.Param("id")
 	entry, err := api.queryHandler.GetEntryById(c, id)
 	if err != nil {
@@ -67,7 +60,7 @@ func (api *RestAPI) GetEntryById(c *gin.Context) {
 	}
 }
 
-func (api *RestAPI) CreateEntry(c *gin.Context) {
+func (api *Cli) CreateEntry(c *gin.Context) {
 	var inEntry pem.Entry
 	err := c.BindJSON(&inEntry)
 	if err != nil {
@@ -91,7 +84,7 @@ func (api *RestAPI) CreateEntry(c *gin.Context) {
 	}
 }
 
-func (api *RestAPI) UpdateEntry(c *gin.Context) {
+func (api *Cli) UpdateEntry(c *gin.Context) {
 	var inEntry pem.Entry
 	err := c.BindJSON(&inEntry)
 	if err != nil {
@@ -115,7 +108,7 @@ func (api *RestAPI) UpdateEntry(c *gin.Context) {
 	}
 }
 
-func (api *RestAPI) DeleteEntry(c *gin.Context) {
+func (api *Cli) DeleteEntry(c *gin.Context) {
 	id := c.Param("id")
 	err := api.commandHandler.DeleteEntry(c, id)
 	if err != nil {

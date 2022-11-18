@@ -46,7 +46,7 @@ go tool cover -func docs/testcover.out
 [@husamettinarabaci](https://www.github.com/husamettinarabaci)
 
 ## Notes
-DDD, Hex-Arc, Unit Test, testify, Go-Gin, Mockgen, IoC (golobby-container) 
+DDD, Hex-Arc, Unit Test, testify, Go-Gin, Mockgen, IoC (golobby-container) , Go-Yaml
 Genjecktor
 Cobra
 go-micro

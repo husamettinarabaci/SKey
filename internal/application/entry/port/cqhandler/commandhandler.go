@@ -1,4 +1,4 @@
-package application_entry_port_repository
+package application_entry_port_cqhandler
 
 import (
 	"context"
@@ -6,9 +6,7 @@ import (
 	deme "github.com/husamettinarabaci/SKey/internal/domain/entry/model/entity"
 )
 
-type Repository interface {
-	GetAllEntry(ctx context.Context) ([]deme.Entry, error)
-	GetEntryById(ctx context.Context, uid string) (deme.Entry, error)
+type CommandHandler interface {
 	CreateEntry(ctx context.Context, entry deme.Entry) (deme.Entry, error)
 	UpdateEntry(ctx context.Context, entry deme.Entry) (deme.Entry, error)
 	DeleteEntry(ctx context.Context, uid string) error
